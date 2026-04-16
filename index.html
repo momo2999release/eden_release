@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Release Download</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background: #0d1117;
+            color: #c9d1d9;
+        }
+        .release-box {
+            border: 1px solid #30363d;
+            border-radius: 6px;
+            padding: 24px;
+            background: #161b22;
+        }
+        h1 { color: #f0f6fc; margin-top: 0; }
+        .asset {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 12px;
+            margin: 10px 0;
+            background: #21262d;
+            border-radius: 6px;
+            border: 1px solid #30363d;
+        }
+        button {
+            padding: 6px 16px;
+            background: #238636;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+        button:hover {
+            background: #2ea043;
+        }
+        a { color: #58a6ff; text-decoration: none; }
+
+        /* 攻略折叠区域样式 */
+        .wiki-toggle-btn {
+            width: 100%;
+            padding: 12px 16px;
+            background: #1f6feb;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 14px;
+            margin: 20px 0 10px 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            transition: background-color 0.3s;
+        }
+        .wiki-toggle-btn:hover {
+            background: #388bfd;
+        }
+        .wiki-toggle-btn .arrow {
+            transition: transform 0.3s;
+        }
+        .wiki-toggle-btn.active .arrow {
+            transform: rotate(180deg);
+        }
+
+        /* 攻略内容区域 */
+        .wiki-container {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease-out, padding 0.4s ease;
+            background: #0d1117;
+            border-radius: 6px;
+            border: 1px solid #30363d;
+        }
+        .wiki-container.active {
+            max-height: 2000px;
+            padding: 20px;
+            margin-top: 10px;
+        }
+
+        /* 攻略内部样式 */
+        .wiki-section {
+            color: #c9d1d9;
+        }
+        .wiki-title {
+            color: #f0f6fc;
+            margin-top: 0;
+            font-size: 20px;
+            border-bottom: 1px solid #30363d;
+            padding-bottom: 10px;
+        }
+        .wiki-intro {
+            color: #8b949e;
+            font-style: italic;
+            margin-bottom: 20px;
+        }
+        .wiki-item {
+            margin: 16px 0;
+            padding: 12px;
+            background: #161b22;
+            border-radius: 6px;
+            border-left: 3px solid #238636;
+        }
+        .wiki-item h3 {
+            color: #f0f6fc;
+            margin: 0 0 10px 0;
+            font-size: 16px;
+        }
+        .wiki-item p {
+            margin: 8px 0;
+            line-height: 1.6;
+        }
+        .wiki-item ul {
+            margin: 8px 0;
+            padding-left: 20px;
+        }
+        .wiki-item li {
+            margin: 6px 0;
+            line-height: 1.5;
+        }
+        .wiki-item strong {
+            color: #7ee787;
+        }
+        .wiki-item a {
+            color: #58a6ff;
+            word-break: break-all;
+        }
+        .wiki-item a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="release-box">
+        <h1>📦 《伊甸园》4月17日内测版本</h1>
+        <p>发布日期: 2025-04-17</p>
+        <div class="asset">
+            <div>
+                <span class="version-icon">🪟</span>
+                <strong>Windows 版本（推荐）</strong> 
+            </div>
+            <button onclick="downloadFile('win')">
+                下载
+            </button>
+        </div>
+        <div class="asset">
+            <div>
+                <span class="version-icon">🍎</span>
+                <strong>Mac 版本</strong> 
+            </div>
+            <button onclick="downloadFile('mac')">
+                下载
+            </button>
+        </div>
+        <div class="asset">
+            <div>
+                <span class="version-icon">🤖</span>
+                <strong>Android 版本</strong> 
+            </div>
+            <button onclick="downloadFile('android')">
+                下载
+            </button>
+        </div>
+        <div class="wiki-item">
+            <p>如果您在同一设备上体验过之前版本的游戏，旧的成就、结局、画廊、纪念品数据将被继承。</p>
+            <p>请勿加载旧游戏版本的存档，以免出现运行错误！</p>
+        </div>
+        <!-- 游戏攻略折叠按钮 -->
+        <button class="wiki-toggle-btn" onclick="toggleWiki()">
+            <span>游戏攻略（内含剧透）</span>
+            <span class="arrow">▼</span>
+        </button>
+
+        <!-- 攻略内容区域 -->
+        <div class="wiki-container" id="wikiContent">
+            <div class="wiki-section">
+                <div class="wiki-item">
+                    <h3>▶ 赠送花束</h3>
+                    <p>当奈费勒对议长好感大于50时，可以在【约会-欢愉之馆旧址】中购买第一支花束。好感大于70则解锁第二支花束。</p>
+                    <p>将花束赠送给议长，可以折断一张不满或提高议长的好感。</p>
+                </div>
+
+                <div class="wiki-item">
+                    <h3>▶ 随机送礼事件</h3>
+                    <p>当奈费勒已赠送了两支花束、议长对奈费勒好感大于70并且不满小于3张时，有概率触发随机送礼事件。</p>
+                    <p>大部分礼物都是季节限定的。很大概率开出季节性花束，可以用于完成异世界线中的相关成就。</p>
+                </div>
+
+                <div class="wiki-item">
+                    <h3>▶ 季节更替</h3>
+                    <p>游戏开始时会在四个季节中随机抽取一个，之后每经过28天会轮换一次。</p>
+                </div>
+
+                <div class="wiki-item">
+                    <h3>▶ 季节性事件</h3>
+                    <p>目前共有四个季节事件，具体触发条件如下：</p>
+                    <ul>
+                        <li><strong>春季：</strong>不满小于3张时，通过【约会-春游踏青】触发。</li>
+                        <li><strong>夏季：</strong>议长好感高于80且无不满时，通过【约会-夏季花灯会】触发。</li>
+                        <li><strong>秋季：</strong>议长好感高于90且无不满时，自动触发。</li>
+                        <li><strong>冬季：</strong>朝政点较低时，有概率触发【待处理的领主报告】事件，成功通过3次判定后会触发【又一份报告】。完成该报告并听取调查人员的结果后，可以通过【分担工作】或【约会-苗圃】触发后续。</li>
+                    </ul>
+                </div>
+                <div class="wiki-item">
+                    <h3>▶ 苗圃捉迷藏</h3>
+                    <p>当议长好感大于70且无不满时，在【约会】或【分担工作】中前往苗圃有20%的概率触发捉迷藏剧情。冬季除外。</p>
+                </div>
+                <div class="wiki-item">
+                    <h3>▶ 议长的呼唤</h3>
+                    <p>当议长好感大于70、无不满时，有概率触发【议长的呼唤】选项，共包含4个事件。</p>
+                    <p>是达成结局【爱之巢】的必要条件。</p>
+                </div>
+
+                <div class="wiki-item">
+                    <h3>▶ 隐藏世界线 - 7.272655</h3>
+                    <p>当奈费勒前往异世界时，有10%的概率会遭遇黑雾。</p>
+                    <p>被黑雾吞噬将进入失败结局；挣脱黑雾之后，可以通过【聊聊黑雾的事】选项来触发后续。</p>
+                    <p>如果太长时间没有主动出击，黑雾将在入夜时再次袭击，并且每次的黑雾都将比上一次的更难挣脱。</p>
+                </div>
+
+                <div class="wiki-item">
+                    <h3>▶ 隐藏世界线 - 5.742857</h3>
+                    <p>完成上一个隐藏世界线后，在奈费勒前往异世界时有10%的概率会遇见光芒牵引。</p>
+                    <p>选择【好奇看看】则触发后续剧情。</p>
+                </div>
+
+                <div class="wiki-item">
+                    <h3>▶ 联系制作组</h3>
+                    <ul>
+                        <li><strong>ao3公告板：</strong><a href="https://archiveofourown.org/works/80842111" target="_blank">https://archiveofourown.org/works/80842111</a></li>
+                        <li><strong>苗圃论坛：</strong>《伊甸园》主题帖</li>
+                        <li><strong>邮箱（仅限无料寄送相关）：</strong>momo2999release@proton.me</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // 下载链接配置
+        const downloadLinks = {
+            mac: 'https://github.com/momo2999release/eden_release/releases/download/2.0_20260417/eden-2.0_20260417-mac.zip',
+            win: 'https://github.com/momo2999release/eden_release/releases/download/2.0_20260417/eden-2.0_20260417-pc.zip',
+            android: 'https://github.com/momo2999release/eden_release/releases/download/2.0_20260417/com.arzu_nawfal.eden-2-1776345660-release.apk'
+        };
+
+        function downloadFile(platform) {
+            const url = downloadLinks[platform];
+            if (url) {
+                window.location.href = url;
+            }
+        }
+
+        // 攻略折叠展开功能
+        function toggleWiki() {
+            const wikiContainer = document.getElementById('wikiContent');
+            const toggleBtn = document.querySelector('.wiki-toggle-btn');
+
+            wikiContainer.classList.toggle('active');
+            toggleBtn.classList.toggle('active');
+        }
+    </script>
+</body>
+</html>
