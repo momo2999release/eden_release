@@ -81,7 +81,8 @@
             border: 1px solid #30363d;
         }
         .wiki-container.active {
-            max-height: 2000px;
+            max-height: none;        /* 移除高度限制 */
+            overflow: visible;       /* 关键修复：允许内容溢出显示 */
             padding: 20px;
             margin-top: 10px;
         }
